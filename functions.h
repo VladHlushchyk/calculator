@@ -3,6 +3,18 @@
 
 #include "header.h"
 
+/*
+    Creates node and returns pointer to it.
+*/
+Node *node_create(Node* prev_node, double value, char type);
+
+
+/*
+    frees all the nodes what left.
+    Returns EXIT_FAILURE if first_node == NULL, and EXIT_SUCCESS if everything is ok.
+*/
+int free_nodes(Node *first_node);
+
 
 // Mathematical operations(i call them actions)
 double add          (double, double);

@@ -49,6 +49,4 @@ extern const Action actions[];
 extern const int actions_am;        // actions_am is amount of actions
 
 
-#include "functions.h"
-
 #endif

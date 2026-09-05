@@ -18,6 +18,25 @@ Node *node_create(Node* prev_node, double value, char type)
     return curr_node;
 }
 
+int free_nodes(Node *first_node)
+{
+    if(first_node == NULL)
+        return EXIT_FAILURE;
+
+    Node *curr_node = first_node;
+    Node *next_node;
+    while(curr_node != NULL)
+    {
+        next_node = curr_node->next;
+
+        free(curr_node);
+
+        curr_node = next_node;
+    }
+
+    return EXIT_SUCCESS;
+}
+
 
 // Actions stuff
 
@@ -32,7 +51,7 @@ const Action actions[] = {
     { '-', 'a', 1, substract }, 
     { '*', 'a', 2, multiply }, 
     { '/', 'a', 2, divide },
-    { '^', 'a', 2, pow}
+    { '^', 'a', 2, pow },
 };
 
 const int actions_am = sizeof(actions) / sizeof(Action);        // actions_am is amount of actions
@@ -235,5 +254,7 @@ double solver(Node *first_node)
                 break;
         }
     }
-    return curr_node->value;
+    double res = curr_node->value; 
+    free_nodes(first_node);
+    return res;
 }
